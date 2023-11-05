@@ -42,10 +42,12 @@ export default function Navigation() {
 }
 
 function renderPokeball (focused) {
+  const pokeball = require('../assets/pokeball.png')
+  const pokball_o = require('../assets/pokeball-o.png')
   return (
     <Image
-      source={require('../assets/pokeball.png')}
-      style={{ width: 80, height: 80, top: focused ? -25 : -10, }}
+      source={focused ? pokeball : pokball_o}
+      style={{ width: 80, height: 80, top: -10, }}
     />
   )
 }
