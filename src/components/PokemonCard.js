@@ -1,5 +1,6 @@
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback } from 'react-native'
 import getColorByPokemonType from '../api/getColorByPokemonType'
+import { useNavigation } from '@react-navigation/native'
 
 
 export default function PokemonCard(props) {
@@ -7,13 +8,19 @@ export default function PokemonCard(props) {
     pokemon
   } = props
 
+  const navigation = useNavigation()
+
   const bgStyles = {
     ...styles.bgStyles,
     backgroundColor: getColorByPokemonType(pokemon.type)
   }
 
   const goToPokemon = () => {
-    console.log('Go to Pokemon: ', pokemon.name)
+    console.log('Go to Pokemon: ', pokemon.id, pokemon.name)
+    navigation.navigate('Pokemon', {
+      pokemonId: pokemon.id,
+      pokemonName: pokemon.name,
+    })
   }
   return (
     <TouchableWithoutFeedback onPress={goToPokemon}>
