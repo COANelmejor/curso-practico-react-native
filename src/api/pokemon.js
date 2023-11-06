@@ -7,9 +7,9 @@ const defaultOptions = {
   }
 }
 
-export async function getPokemonsApi () {
+export async function getPokemonsApi (nextUrl) {
   try {
-    const url = `${API_URL_POKEAPI}/pokemon?limit=20&offset=0`
+    const url = nextUrl || `${API_URL_POKEAPI}/pokemon?limit=20&offset=0`
     const response = await fetch(url, defaultOptions)
     const result = await response.json()
     return result
