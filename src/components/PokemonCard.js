@@ -16,18 +16,14 @@ export default function PokemonCard(props) {
   }
 
   const goToPokemon = () => {
-    console.log('Go to Pokemon: ', pokemon.id, pokemon.name)
-    navigation.navigate('Pokemon', {
-      pokemonId: pokemon.id,
-      pokemonName: pokemon.name,
-    })
+    navigation.navigate('Pokemon', { id: pokemon.id })
   }
   return (
     <TouchableWithoutFeedback onPress={goToPokemon}>
       <View style={styles.card}>
         <View style={styles.spacing}>
           <View style={bgStyles}>
-            <Text style={styles.number}>#{`${pokemon.order}`.padStart(3,0)}</Text>
+            <Text style={styles.number}>#{`${pokemon.order}`.padStart(3, 0)}</Text>
             <Text style={styles.name} >{pokemon.name}</Text>
             <Image
               style={styles.image}
