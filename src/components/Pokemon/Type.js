@@ -4,8 +4,6 @@ import getColorByPokemonType from '../../utils/getColorByPokemonType';
 export default function Type(props) {
   const { types } = props;
 
-
-  console.log(JSON.stringify(types, null, 2))
   return (
     <View style={styles.content}>
       {types.map((item, index) => {
@@ -25,7 +23,7 @@ export default function Type(props) {
 
 const styles = StyleSheet.create({
   content: {
-    marginTop: 50,
+    marginTop: 20,
     paddingHorizontal: 20,
     flexDirection: 'row',
     alignItems: 'center',
