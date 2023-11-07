@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback } from 'react-native'
-import getColorByPokemonType from '../api/getColorByPokemonType'
+import getColorByPokemonType from '../utils/getColorByPokemonType'
 import { useNavigation } from '@react-navigation/native'
 
 
