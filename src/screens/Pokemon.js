@@ -4,6 +4,7 @@ import { getPokemonDetailsApi } from '../api/pokemon';
 import Header from '../components/Pokemon/Header';
 import Type from '../components/Pokemon/Type';
 import Stats from '../components/Pokemon/Stats';
+import Icon from "react-native-vector-icons/FontAwesome"
 
 export default function PokemonScreen(props) {
   const {
@@ -26,11 +27,27 @@ export default function PokemonScreen(props) {
     })()
   }, [params])
 
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => null,
+      headerLeft: () => {
+       return (<Icon
+          name="arrow-left"
+          size={20}
+          color="#FFF"
+          style={{ marginLeft: 20 }}
+          onPress={navigation.goBack}
+        />)
+
+      },
+    })
+  }, [navigation, pokemon])
+
   if (!pokemon) return null;
 
   return (
     <ScrollView>
-      <Header 
+      <Header
         name={pokemon.name}
         order={pokemon.order}
         image={pokemon.sprites.other['official-artwork'].front_default}
