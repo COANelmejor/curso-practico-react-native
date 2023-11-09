@@ -5,7 +5,12 @@ export default function Stats(props) {
   const { stats } = props;
   const barStyles = (num) => {
     return {
-      backgroundColor: num > 49 ? '#00AC17' : '#FF3E3E',
+      backgroundColor:  num > 100 ? '#0b87c9' : 
+                        num > 79  ? '#00AC17' : 
+                        num > 59  ? '#FFD300' : 
+                        num > 39  ? '#FF9D00' : 
+                        num > 19  ? '#FF3E3E' : 
+                                    '#9B51E0',
       width: `${num}%`,
     }
   }
