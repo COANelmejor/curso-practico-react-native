@@ -52,6 +52,7 @@ export default function PokemonScreen(props) {
         order={pokemon.order}
         image={pokemon.sprites.other['official-artwork'].front_default}
         type={pokemon.types[0].type.name}
+        secondType={pokemon.types[1] ? pokemon.types[1].type.name : null}
       />
       <Type types={pokemon.types} />
       <Stats stats={pokemon.stats} />
