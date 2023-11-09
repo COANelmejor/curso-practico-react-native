@@ -3,13 +3,20 @@ import { View, Text, StyleSheet, SafeAreaView, Image, Platform } from 'react-nat
 import getColorByPokemonType from '../../utils/getColorByPokemonType'
 
 export default function Header(props) {
-  const { name, order, image, type } = props;
+  const { name, order, image, type, secondType } = props;
+  console.log('type', type, secondType)
 
   const color = getColorByPokemonType(type);
-  const bgStyles = [{ backgroundColor: color, ...styles.bg }]
+  const bgStyles = [{...styles.bg, backgroundColor: color}]
+  if (secondType) {
+    const secondColor = getColorByPokemonType(secondType);
+    bgStyles[0].height = Platform.OS === 'android' ? 175 : 200;
+    bgStyles.push({...styles.bg2, backgroundColor: secondColor })
+  }
   return (
     <>
-      <View style={bgStyles} />
+      {secondType && <View style={bgStyles[1]} />}
+      <View style={bgStyles[0]} />
       <SafeAreaView style={styles.content}>
         <View style={styles.header}>
           <Text style={styles.name}>{name}</Text>
@@ -32,6 +39,15 @@ const styles = StyleSheet.create({
     borderBottomEndRadius: 300,
     borderBottomLeftRadius: 300,
     transform: [{ scaleX: 2 }],
+  },
+  bg2: {
+    top: 0,
+    width: '100%',
+    height: Platform.OS === 'android' ? 300 : 325,
+    position: 'absolute',
+    borderBottomEndRadius: 300,
+    borderBottomLeftRadius: 300,
+    transform: [{ scaleX: 3 }],
   },
   content: {
     marginHorizontal: 20,
