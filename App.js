@@ -3,16 +3,19 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Navigation from './src/navigation/Navigation';
 import 'react-native-gesture-handler';
+import { AuthProvider } from './src/context/AuthContext';
 
 export default function App() {
   return (
     <NavigationContainer>
-      <StatusBar 
-        style='auto'
-        backgroundColor="transparent"
-        translucent={false}
-      />
-      <Navigation />
+      <AuthProvider>
+        <StatusBar
+          style='auto'
+          backgroundColor="transparent"
+          translucent={false}
+        />
+        <Navigation />
+      </AuthProvider>
     </NavigationContainer>
   );
 }
