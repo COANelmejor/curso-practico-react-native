@@ -9,10 +9,10 @@ export default function PokemonCard(props) {
   } = props
 
   const navigation = useNavigation()
-
+  const colorType = getColorByPokemonType(pokemon.type)
   const bgStyles = {
     ...styles.bgStyles,
-    backgroundColor: getColorByPokemonType(pokemon.type)
+    backgroundColor: colorType
   }
 
   const goToPokemon = () => {
@@ -24,11 +24,11 @@ export default function PokemonCard(props) {
         <View style={styles.spacing}>
           <View style={bgStyles}>
             <Text style={styles.number}>#{`${pokemon.order}`.padStart(3, 0)}</Text>
-            <Text style={styles.name} >{pokemon.name}</Text>
             <Image
               style={styles.image}
               source={{ uri: pokemon.image }}
             />
+            <Text style={{...styles.name, textShadowColor: colorType}} >{pokemon.name}</Text>
           </View>
         </View>
       </View>
@@ -40,6 +40,18 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     height: 150,
+    margin: '1%',
+    borderRadius: 15,
+    backgroundColor: '#FFF',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: .8,
+    shadowRadius: 3.84,
+    elevation: 5,
+
   },
   spacing: {
     flex: 1,
@@ -56,19 +68,29 @@ const styles = StyleSheet.create({
     top: 10,
     color: "#FFF",
     fontSize: 11,
+    fontWeight: 'bold',
   },
   name: {
     color: "#FFF",
-    fontWeight: "bold",
     fontSize: 16,
-    paddingTop: 5,
-    textTransform: "capitalize",
+    fontWeight: 'bold',
+    textTransform: 'capitalize',
+    position: 'absolute',
+    bottom: 10,
+    left: 10,
+    elevation: 5,
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 8,
+    paddingHorizontal: 5,
+    
   },
   image: {
+    width: 125,
+    height: 125,
     position: 'absolute',
-    bottom: 2,
-    right: 2,
-    width: 90,
-    height: 90,
+    bottom: 10,
+    right: 20,
+    resizeMode: 'contain',
+
   }
 })
