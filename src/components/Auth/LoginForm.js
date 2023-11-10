@@ -9,10 +9,17 @@ import {
 } from 'react-native';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { user } from '../../utils/userDB';
+import { user, userDetail } from '../../utils/userDB';
+import useAuth from '../../hooks/useAuth';
 
 export default function LoginForm() {
   const [error, setError] = useState('')
+
+  const {
+    auth,
+    login,
+    logout,
+  } = useAuth();
 
   const formik = useFormik({
     initialValues: initialValues(),
@@ -30,6 +37,7 @@ export default function LoginForm() {
       } else {
         Keyboard.dismiss();
         alert('Bienvenido');
+        login(userDetail);
       }
     },
   })
